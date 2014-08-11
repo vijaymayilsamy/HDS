@@ -1,0 +1,81 @@
+<style>
+#wf_container h5{
+    font-size:18px;font-family:Arial,sans-serif;font-weight:bold;color:#333;padding:10px 0;border-bottom:1px solid #000;
+}
+</style>
+<div id="wf_container" class="row-fluid">
+    <h5>Featured Categories</h5>
+    <div class="row-fluid top-cat-row">
+        <div class="span2">
+            <a href="/shop/c/appliances-17618" onclick="internalLink(this,'AA00041')"><img src="ThdsMroUs/Attachment/images/homepage/post/top_categories/appliances.jpg" alt="Appliance Products"></a>
+            <h4><a href="/shop/c/appliances-17618" onclick="internalLink(this,'AA00041')">Appliances</a></h4>
+        </div>
+        <div class="span2">
+            <a href="/shop/c/electrical-17872" onclick="internalLink(this,'AA00043')"><img src="ThdsMroUs/Attachment/images/homepage/post/top_categories/electrical.jpg" alt="Electrical Products"></a>
+            <h4><a href="/shop/c/electrical-17872" onclick="internalLink(this,'AA00043')">Electrical</a></h4>
+        </div>
+        <div class="span2">
+            <a href="/shop/c/hardware-18177" onclick="internalLink(this,'AA00045')"><img src="ThdsMroUs/Attachment/images/homepage/post/top_categories/hardware.jpg" alt="Hardware Product"></a>
+            <h4><a href="/shop/c/hardware-18177" onclick="internalLink(this,'AA00045')">Hardware</a></h4>
+        </div>
+        <div class="span2">
+            <a href="/shop/c/hvac-18629" onclick="internalLink(this,'AA00049')"><img src="ThdsMroUs/Attachment/images/homepage/post/top_categories/hvac.jpg" alt="HVAC Products"></a>
+            <h4><a href="/shop/c/hvac-18629" onclick="internalLink(this,'AA00049')">HVAC</a></h4>
+        </div>
+        <div class="span2">
+            <a href="/shop/c/janitorial-21171" onclick="internalLink(this,'AA00059')"><img src="ThdsMroUs/Attachment/images/homepage/post/top_categories/janitorial_127435.jpg" alt="Janitorial Products"></a>
+            <h4><a href="/shop/c/janitorial-21171">Janitorial</a></h4>
+        </div>
+        <!--<div class="span2">
+            <a href="/shop/c/lighting-18663" onclick="internalLink(this,'AA00051')"><img src="ThdsMroUs/Attachment/images/homepage/post/top_categories/lighting.jpg" alt="Lighting Products"></a>
+            <h4><a href="/shop/c/lighting-18663" onclick="internalLink(this,'AA00051')">Lighting</a></h4>
+        </div>-->
+    </div>
+    <div class="row-fluid top-cat-row">
+        <div class="span2">
+            <a href="/shop/c/safety-18745" onclick="internalLink(this,'AA570')"><img src="ThdsMroUs/Attachment/images/homepage/post/top_categories/gloves.jpg" alt="Occupational Safety Products"></a>
+            <h4><a href="/shop/c/safety-18745" onclick="internalLink(this,'AA570')">Occupational Safety</a></h4>
+        </div> 
+        <div class="span2">
+            <a href="/shop/c/office-supplies-18942" onclick="internalLink(this,'AA00139')"><img src="ThdsMroUs/Attachment/images/homepage/post/top_categories/officeproducts.jpg" alt="Office Products"></a>
+            <h4><a href="/shop/c/office-supplies-18942" onclick="internalLink(this,'AA00139')">Office Products</a></h4>
+        </div>
+        <div class="span2">
+            <a href="/shop/c/paint-supplies-17139" onclick="internalLink(this,'AA487')"><img src="ThdsMroUs/Attachment/images/homepage/post/top_categories/paint_supplies.jpg" alt="Paint Supplies Products"></a>
+            <h4><a href="/shop/c/paint-supplies-17139">Paint Supplies</a></h4>
+        </div>
+        <div class="span2">
+            <a href="/shop/c/plumbing-18750" onclick="internalLink(this,'AA00053')"><img src="ThdsMroUs/Attachment/images/homepage/post/top_categories/plumbing.jpg" alt="Plumbing Products"></a>
+            <h4><a href="/shop/c/plumbing-18750" onclick="internalLink(this,'AA00053')">Plumbing</a></h4>
+        </div>
+        <div class="span2">
+            <a href="/shop/c/tools-17345" onclick="internalLink(this,'AA00057')"><img src="ThdsMroUs/Attachment/images/homepage/post/top_categories/tools.jpg" alt="Tool Products"></a>
+            <h4><a href="/shop/c/tools-17345" onclick="internalLink(this,'AA00057')">Tools</a></h4>
+        </div>
+        <!--<div class="span2">
+            <a href="/shop/SearchDisplay?customSearch=Clearance&amp;customFilter=xc_cas_f3%3A%22Yes%22&amp;isLandingPage=true&amp;catalogId=10054" onclick="internalLink(this,'AA995')"><img src="ThdsMroUs/Attachment/images/homepage/post/top_categories/clearance.jpg" alt="Clearance Items"></a>
+            <h4><a href="/shop/SearchDisplay?customSearch=Clearance&amp;customFilter=xc_cas_f3%3A%22Yes%22&amp;isLandingPage=true&amp;catalogId=10054" onclick="internalLink(this,'AA995')">Clearance Items</a></h4>
+        </div>-->
+    </div>
+</div>    
+<script>
+// jQuery available Plugin 1.7.0 (20121201)
+// By John Terenzio | http://terenz.io | MIT License
+(function(c){var a,b=[],d=function(){for(a=0;a<b.length;++a)if(c(b[a][0])[0]&&(b[a][2]||c(b[a][0]).next()[0]||c.isReady)){try{b[a][1].apply(c(b[a][0]).eq(0))}catch(e){"undefined"!==typeof window.console&&window.console.log(e)}b.splice(a,1);--a}b.length&&!c.isReady&&window.setTimeout(d,10)};c.fn.available=function(a,c){b.push([this.selector,a,c||!1]);d();return this}})(jQuery);
+
+var WF = {};
+WF.exp = {
+    addFeaturedCategories: function(){
+        var $el = $('.row-fluid .span8');
+        //$el.find('ul').append('<li>If none of the suggestions above work, let us help you: call us at 1-800-431-3302</li>');
+        $el.find('p').after($('#wf_container'));
+    },
+
+    init: function(){
+        $('.row-fluid .span8').available(function(){
+            WF.exp.addFeaturedCategories();
+        },false);       
+    }   
+};
+WF.exp.init();
+</script>

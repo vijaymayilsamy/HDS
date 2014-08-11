@@ -1,0 +1,68 @@
+<style>
+#wf_container{
+	background:url('http://projects.widerfunnel.com/CLIENTS/HDS/FE4.2/images/bg-yellow.png') no-repeat 0 0;height: 120px;margin: 10px 0;
+}
+.wf_cta{
+	
+}
+.wf_image{
+	width: 223px;height: 120px;float: left;
+}
+.wf_desc{
+	float: left;width: 280px;padding: 10px;
+}
+.wf_cta a{
+	font-size:13px;font-family:Arial;font-weight:bold;color:#333;	
+}
+.wf_desc h5{
+	font-size: 18px;font-family: Arial;font-weight: bold;color: #333;margin: 10px 0;line-height:22px;
+}
+</style>
+<script>
+// jQuery available Plugin 1.7.0 (20121201)
+// By John Terenzio | http://terenz.io | MIT License
+(function(c){var a,b=[],d=function(){for(a=0;a<b.length;++a)if(c(b[a][0])[0]&&(b[a][2]||c(b[a][0]).next()[0]||c.isReady)){try{b[a][1].apply(c(b[a][0]).eq(0))}catch(e){"undefined"!==typeof window.console&&window.console.log(e)}b.splice(a,1);--a}b.length&&!c.isReady&&window.setTimeout(d,10)};c.fn.available=function(a,c){b.push([this.selector,a,c||!1]);d();return this}})(jQuery);
+
+var WF = WF || {};
+WF.exp = {
+
+        addBanner: function(){
+        	var href =  window.location.href,
+        		imgsrc = 'http://projects.widerfunnel.com/CLIENTS/HDS/FE4.2/images/'
+        		str = '';
+
+        	$('.page-body .row-fluid:eq(0)').before('<div class="row-fluid" id="wf_container"><div class="wf_image"></div><div class="wf_desc"><h5></h5><div class="wf_cta"><a class="btn btn-hds">Click now to save</a></div></div></div>');
+        	if(href.indexOf('-400a-fill-valve-p575250') > -1){
+        		str = 'Save 20 cents per valve <br />by purchasing the 6 pack';
+        		url = 'cutout-pumps.png';
+        		$('.wf_image').css('width','256px');
+        		$('.wf_desc').css('width','250px');
+        	}
+        	if(href.indexOf('-wood-round-toilet-seat-standard-duty-p568525') > -1){
+        		str = 'Save $1 per seat by <br />purchasing the 6 pack';
+        		url = 'cutout-seats.png';
+        		$('.wf_image').css('width','261px');
+        		$('.wf_desc').css('width','255px');
+        	}
+        	if(href.indexOf('-wood-round-toilet-seat-package-of-6-p568501') > -1){
+        		str = 'Impress residents with a more <br />attractive heavy-duty seat';
+        		url = 'cutout-seat.png';
+
+        	}
+
+        	$('#wf_container').find('.wf_image').css('background','url('+imgsrc+url+') no-repeat 0 0');
+        	$('#wf_container').find('.wf_desc h5').html(str);
+        	$('.wf_cta').find('a').bind('click', function(){
+        		addItem2ShopCartAjax('addToCartBtn_'+$('#partNumber_1').val(), document.ProductDetailsForm.id);
+        	});
+        },
+
+        init: function(){
+        	$('.page-body .row-fluid:eq(0)').available(function(){
+        		WF.exp.addBanner();
+        	}, false);	
+        	
+        }
+};
+WF.exp.init();
+</script>

@@ -1,0 +1,23 @@
+<script>
+var WF = WF || {};
+
+WF.exp = {
+	swapPos: function(){
+		var $trg_elem = $('.rich-rel-horizontal').eq(0),
+			$elem = $('.row-fluid .well .nopunchout').eq(0).parent().parent();
+
+		$trg_elem.css({'width':'700px','position':'relative','top':'-130px'});
+		$elem.css({'width':'660px','position':'relative','top':'-130px'});	
+
+		$trg_elem.after($elem);			
+
+		$('footer.container').css('margin-top','-130px');
+	},
+
+	init: function(){
+		this.swapPos();
+	}
+};
+WF.exp.init();
+</script>
+

@@ -1,0 +1,90 @@
+<style>
+.wf_add_battery{
+	width:200px;float:left;height:159px;background:url(http://projects.widerfunnel.com/CLIENTS/HDS/FE3.1/images/varB_bg_opti.png) no-repeat 0 0;padding:25px 20px;
+}
+.wf_battery_info{
+	width:145px;float:left;
+}
+.wf_battery_info h5{
+	font:bold 18px Arial,sans-serif; color:#333;margin:5px 0 15px 0;	
+}
+.wf_battery_info div{
+	
+}
+.wf_battery_info div a{
+	
+}
+.wf_battery_image{
+	width:55px;float:right;	
+}
+.wf_battery_image a{
+	
+}
+.wf_battery_image a img{
+	
+}
+</style>
+<div class="wf_add_battery" id="wf_battery_section">
+	<div class="wf_battery_info">
+		<h5>Don&apos;t forget your batteries.</h5>
+		<a class="btn btn-hds" onclick="WF.exp.addtoCart();">Add to Cart Now</a>
+	</div>
+	<div class="wf_battery_image">
+		<a href="https://hdsupplysolutions.com/shop/ProductDisplay?searchTerm=159250&amp;urlRequestType=Base&amp;productId=21751&amp;catalogId=10054&amp;categoryId=&amp;errorViewName=ProductDisplayErrorView&amp;urlLangId=-1&amp;langId=-1&amp;top_category=&amp;parent_category_rn=&amp;storeId=10051"><img src="http://projects.widerfunnel.com/CLIENTS/HDS/FE3.1/images/battery.png" /></a>
+	</div>
+</div>
+<script>
+
+var WF = WF || {};
+
+WF.exp = {
+
+	insertAddBatteryBox: function(){
+		$('#cartsidebar').append($('#wf_battery_section'));
+	},
+
+	addtoCart: function(){
+
+		//By using the below js code we should be able to add the product into cart when user clicks on  "Add to Cart"
+	    var params = [];
+	    params.partNumber_1 = "159250"; 
+	    params.quantity_1 = "1";
+	    params.selected_1 = "Y", 
+	    params.po_159250 = "1-5:25.20|6+:21.20";
+	    wc.service.invoke("AjaxAddOrderItem", params);
+	    this.refreshCartPage();
+	},
+
+	refreshCartPage: function(){
+		var d = $('#CartSuccessMsgModelDialog').css('display'); 
+		if(d == "block" || d == ""){
+		    var href = window.location.href;
+		    window.location.href = href;
+		} else {
+		   	setTimeout(function(){
+		    	WF.exp.refreshCartPage();
+			}, 500);
+		}
+	},
+
+	moveBatterytoTop: function(){
+		var $battery = $('a[href="https://hdsupplysolutions.com/shop/p/aa-hd-supply-alkaline-battery-50pk-p159250"]');
+		if($battery.length){
+			var $trg_elem = $battery.parents('div.row:eq(0)'),
+			$elem = $trg_elem.parent();
+
+			$trg_elem.next().css('display','none');
+			$elem.find('div.row:eq(0)')
+			.before($trg_elem)
+			.before('<hr />');
+		}
+	},
+
+	init: function(){
+		this.insertAddBatteryBox();
+		this.moveBatterytoTop();
+	}
+};
+
+WF.exp.init();
+</script>

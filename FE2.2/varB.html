@@ -1,0 +1,42 @@
+<style>
+#wf_largerimages{
+  background:url('//projects.widerfunnel.com/CLIENTS/HDS/FE2.2/images/hds_varb_bg.png') no-repeat 0 0;width:708px;height:206px;
+}
+#wf_largerimages h5{
+  font-size:18px;color:#333;font-family:Arial,sans-serif;
+}
+#wf_largerimages p{
+  font-size:13px;color:#333;font-family:Arial,sans-serif;
+}
+#wf_largerimages div div{
+  text-align:center;
+}
+.wf_seasonal,.wf_webspecial{
+  width:165px;float:left;margin-right:18px;margin-top:75px;text-align:center;
+}
+.wf_clearanceitem{
+  width:165px;float:left;margin-right:10px;margin-top:75px;text-align:center;
+}
+.wf_ideallygreen{
+  width:165px;float:left;margin-right:0;margin-top:75px;text-align:center;
+}
+</style>
+<script>
+var WF = WF || {};
+WF.exp = {
+  variation: 'B',
+  
+  largerImages: function(){
+    var $elem = $('.space-bottom-large:eq(1)');  
+    $elem
+      .before('<div id="wf_largerimages"><div class="wf_webspecial"><h5>Web Specials</h5><p>Discounts online only <br /> while supplies last! <br /></p><div><a class="btn btn-hds" href="http://hdsupplysolutions.com/shop/web_specials">Shop Now</a></div></div><div class="wf_clearanceitem"><h5>Clearance items</h5><p>Save 30% or more on<br />clearance items.<br /></p><div><a class="btn btn-hds" href="http://hdsupplysolutions.com/shop/SearchDisplay?customSearch=Clearance&customFilter=xc_cas_f3%3A%22Yes%22&isLandingPage=true&catalogId=10054">Shop Now</a></div></div><div class="wf_ideallygreen"><h5>ideallygreen<sup>SM</sup></h5><p>See products that help <br />save money<br />&amp; resources.</p><div><a class="btn btn-hds" href="http://hdsupplysolutions.com/shop/SearchDisplay?customSearch=ideallygreen&customFilter=xc_cas_f5%3A%22Yes%22&isLandingPage=true&catalogId=10054">Shop Now</a></div></div></div>')
+      .css('display','none');
+
+  },
+
+  init: function(){
+    this.largerImages();
+  }  
+};
+WF.exp.init();
+</script>

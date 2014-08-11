@@ -1,0 +1,97 @@
+<div id="wf_container" style="display:none;">
+	<div><label class="checkbox"><input type="checkbox" name="wf_checkbox" checked="checked" />Item added</label></div>
+	<div class="wf_selected_prods"></div>
+	<div id="wf_compare"></div>
+</div>
+<style>
+#wf_container{
+	width:330px;
+	position: absolute;
+	background-color: #e5e5e5;
+	border: 1px solid #eee;
+	border: 1px solid rgba(0, 0, 0, 0.05);
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	border-radius: 4px;
+	-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
+	-moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
+	box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
+	padding: 10px;
+	z-index:9999999999999999;
+}
+.wf_selected_prods{
+	float:left;width:100%;clear:both;	
+}
+.wf_selected_prods .wf_image{
+	float:left;width:62px;padding:5px 5px 1px 5px;background:#fff;margin:5px;height:65px;
+}
+#wf_compare{
+	float:left;width:100%;clear:both;
+}
+.wf_close{
+	font-size:12px;color:red;position: relative;top:-72px;left:58px;text-decoration:none;cursor:pointer;  
+}
+.wf_close:hover{
+	text-decoration: underline;
+}
+</style>
+<script>
+// jQuery available Plugin 1.7.0 (20121201)
+// By John Terenzio | http://terenz.io | MIT License
+(function(c){var a,b=[],d=function(){for(a=0;a<b.length;++a)if(c(b[a][0])[0]&&(b[a][2]||c(b[a][0]).next()[0]||c.isReady)){try{b[a][1].apply(c(b[a][0]).eq(0))}catch(e){"undefined"!==typeof window.console&&window.console.log(e)}b.splice(a,1);--a}b.length&&!c.isReady&&window.setTimeout(d,10)};c.fn.available=function(a,c){b.push([this.selector,a,c||!1]);d();return this}})(jQuery);
+
+var WF = WF || {};
+WF.exp = {
+	compareToolTip: function(){
+		var $trg_elem = $('.prod-grid-container');
+		$trg_elem
+			.bind('mouseover', function(){ 
+				var $elem = $(this).find('.checkbox input:checked'),
+					$elems = $trg_elem.find('.checkbox input:checked');
+				if($elem){
+					$('.wf_selected_prods').empty();
+					$elems.each(function(){
+						var id = $(this).attr('id'),
+							pid = id.split('comparebox_')[1],
+							src = $('#productThumbNailImage_'+pid).attr('src');
+						
+						$('.wf_selected_prods').append('<div class="wf_image"><img src="'+src+'" /><a class="wf_close">X</a></div>');		
+					});			
+					$('#wf_compare')
+						.empty()
+						.append($('#compare_button').clone());
+
+					var pos = WF.exp.getPos($elem[0]);	
+					$('#wf_container')
+						.css({'display':'block','left': pos[0] - 15 +'px','top': pos[1] - 15 +'px'});	
+				}	
+			})
+			.bind('mouseout', function(){
+				$('#wf_container').css('display','none');
+			});
+	},
+
+	getPos: function(ele){
+	    var x=0;
+	    var y=0;
+	    while(true){
+	        x += ele.offsetLeft;
+	        y += ele.offsetTop;
+	        if(ele.offsetParent === null){
+	            break;
+	        }
+	        ele = ele.offsetParent;
+	    }
+	    return [x, y];
+	},
+
+	init: function(){
+		$('.prod-grid-container').available(function(){
+			$('body').append($('#wf_container'));
+			WF.exp.compareToolTip();
+		}, false);
+		
+	}	
+};
+WF.exp.init();
+</script>

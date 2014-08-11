@@ -1,0 +1,80 @@
+<div id="wf_container">
+	<!-- START - Rich Relevance Vertical - B2 Block -->
+	<div class="rich-rel-vertical">
+		<div id="rr_placement_1">
+		<!--  Product Recommendations - HOME PAGE  POST - START --><!-- PRODUCT RECOMMENDATIONS ENVIRONMENT VARIABLES -->
+		<script language="javascript">
+			var rr_APIkey = '26f5c9805145beca';
+			var rr_baseURL = document.location.protocol + '//recs.richrelevance.com/rrserver/';
+
+			var R3_COMMON = new r3_common();
+			R3_COMMON.setApiKey(rr_APIkey);
+			R3_COMMON.setBaseUrl(rr_baseURL);
+			R3_COMMON.setSessionId(hdsUserJSON.userUniqueSessionId);
+			R3_COMMON.addClickthruParams('0', 'storeId=10051');
+			R3_COMMON.setClickthruServer(document.location.protocol+"//"+document.location.host);
+			
+			var user = new String(hdsUserJSON.userId);
+				
+			if (user != "" && user.length > 0){
+		    	R3_COMMON.setUserId(user);
+		    } else {
+		        R3_COMMON.setUserId(hdsUserJSON.userUniqueSessionId);
+		    }
+			if(hdsUserJSON.segmentId != "") {
+		        R3_COMMON.addSegment(hdsUserJSON.segmentId, hdsUserJSON.segmentName);
+			}
+			var wf_placeholder_str = 'home_page.vertical_1';
+			R3_COMMON.addPlacementType(wf_placeholder_str); 
+			
+			var R3_HOME = new r3_home();
+			//SENDS INFO TO RICH RELEVANCE
+			r3();
+			if(typeof R3_COMMON !== RR.U && R3_COMMON.apiKey == RR.T){
+				if(RR.tgtMap[wf_placeholder_str]){
+					wf_placeholder_str = RR.tgtMap[wf_placeholder_str];
+				}	
+			}
+			rr_placement_place_holders[rr_placement_place_holders.length] = wf_placeholder_str;
+			
+		</script>
+		</div>
+	</div>
+</div>		
+<style>
+#rr_placement_1 .rich-rel-vertical .row-fluid{width:145px;padding-right:5px;float:left;}#rr_placement_1 .rich-rel-vertical .row-fluid .span4{width:100%;}#rr_placement_1 .rich-rel-vertical .row-fluid .span8{width:100%;}#rr_placement_1 .rich-rel-vertical hr{display:none;}#rr_placement_1 .rich-rel-vertical h4{font-size:18px;font-family:Arial,sans-serif;font-weight:bold;color:#333;}
+</style>
+<script>
+// jQuery available Plugin 1.7.0 (20121201)
+// By John Terenzio | http://terenz.io | MIT License
+(function(c){var a,b=[],d=function(){for(a=0;a<b.length;++a)if(c(b[a][0])[0]&&(b[a][2]||c(b[a][0]).next()[0]||c.isReady)){try{b[a][1].apply(c(b[a][0]).eq(0))}catch(e){"undefined"!==typeof window.console&&window.console.log(e)}b.splice(a,1);--a}b.length&&!c.isReady&&window.setTimeout(d,10)};c.fn.available=function(a,c){b.push([this.selector,a,c||!1]);d();return this}})(jQuery);
+
+var WF = {};
+WF.exp = {
+	changeHeading: function(){
+		var $elem = $('#rr_placement_1 .rich-rel-vertical');
+		if($elem.find('.row-fluid:eq(4)').length){
+			$elem.find('.row-fluid:eq(4)').css('display','none');
+			$elem.find('h4').html('Most Popular Products');	
+		} else {
+			setTimeout(function(){
+				WF.exp.changeHeading();
+			}, 500);
+		}
+  	},
+
+	addContainer: function(){
+		var $el = $('.row-fluid .span8');
+		$el.find('p').after($('#wf_container'));
+		this.changeHeading();
+		//console.log('popular length = '+$('#rr_placement_1 .rich-rel-vertical').find('.row-fluid:eq(4)').length);
+	},
+
+	init: function(){
+		$('.row-fluid .span8').available(function(){
+			WF.exp.addContainer();
+		},false);		
+	}	
+};
+WF.exp.init();
+</script>

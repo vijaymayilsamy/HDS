@@ -1,0 +1,23 @@
+<style>
+.desktopOnly{
+  display:none;
+}
+.rich-rel-horizontal{
+  margin:0!important;
+}
+</style>
+<script>
+var WF = WF || {};
+WF.exp = {
+  variation: 'A',
+  changeRowSequence: function(){
+    var $elem = $('.space-bottom-large').eq(1).find('.span3'); 
+    $elem.eq(0).before($elem.eq(3));
+  },
+
+  init: function(){
+    this.changeRowSequence();
+  }  
+};
+WF.exp.init();
+</script>

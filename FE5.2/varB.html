@@ -1,0 +1,43 @@
+<style>
+.wf_pricetext{
+	font-size:18px;font-family: Arial,sans-serif;color:#999;padding:5px 0;
+}
+.wf_pricevalue{
+	font-size:18px;font-family: Arial,sans-serif;font-weight:bold;color:#212121;	
+}
+.price-tier li{
+	border:none;
+}
+</style>
+<script>
+// jQuery available Plugin 1.7.0 (20121201)
+// By John Terenzio | http://terenz.io | MIT License
+(function(c){var a,b=[],d=function(){for(a=0;a<b.length;++a)if(c(b[a][0])[0]&&(b[a][2]||c(b[a][0]).next()[0]||c.isReady)){try{b[a][1].apply(c(b[a][0]).eq(0))}catch(e){"undefined"!==typeof window.console&&window.console.log(e)}b.splice(a,1);--a}b.length&&!c.isReady&&window.setTimeout(d,10)};c.fn.available=function(a,c){b.push([this.selector,a,c||!1]);d();return this}})(jQuery);
+
+var WF = WF || {};
+WF.exp = {
+	variation: 'B',
+
+	biggerPrice: function(){
+		if(!$('#wf_productlisting').length){
+			$('.price-tier').each(function(){
+				var $el = $(this),
+					price = $el.find('.row-fluid .span7:eq(0)').html();
+				if($el.find('.row-fluid').length){
+					$el.html('<li><div class="wf_pricetext">As low as</div><div class="wf_pricevalue">'+price+'</div></li>');	
+				}	
+			});
+		}
+		setTimeout(function(){
+			WF.exp.biggerPrice();
+		}, 1e3); 
+	},
+
+	init: function(){
+		this.biggerPrice();
+	}	
+};
+$('.prod_list_image').available(function(){
+	WF.exp.init();
+}, false);
+</script>
